@@ -8,30 +8,30 @@
 	       <!-- Main jumbotron for a primary marketing message or call to action -->
 			<div class="col-sm-12 col-md-12 col-lg-12">
     			
-    			<form method="post" action="{{ route('companies.update', [$company->id]) }}">
+    			<form method="post" action="{{ route('projects.update', [$project->id]) }}">
 					{{ csrf_field() }}
 					<input type="hidden" name="_method" value="put">
 					
 					<div class="form-group">
-						<label for="company-name">Name<span class="required">*</span></label>
+						<label for="project-name">Name<span class="required">*</span></label>
 						<input placeholder="Enter name"
 								id="comapany-name"
 								required
 								name="name"
 								spellcheck="false"
 								class="form-control"
-								value="{{ $company->name }}" 
+								value="{{ $project->name }}" 
 						/>
 						</div>	
 						<div class="form-group">
-						<label for="company-description">Description<span class="required">*</span></label>
+						<label for="project-description">Description<span class="required">*</span></label>
 						<textarea placeholder="Enter description"
 								style="resize: vertical"
 								id="comapany-content"
 								name="description"
 								rows="5" spellcheck="false"
 								class="form-control autosize-target text-left">
-								{{ $company->description }}
+								{{ $project->description }}
 								</textarea>
 					</div>	
 					<div class="form-group">
@@ -50,8 +50,8 @@
     		<div class="p-3">
     			<h4 class="font-italic">Actions</h4>
     			<ol class="list-unstyled mb-0">
-    				<li><a href="/companies/{{ $company->id }}">View Company</a></li>
-    				<li><a href="/companies/">List Companies</a></li>
+    				<li><a href="/projects/{{ $project->id }}">View project</a></li>
+    				<li><a href="/projects">List projects</a></li>
                 </ol>
    			</div>        
 		</div>
