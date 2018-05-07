@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\This;
 
 class Comment extends Model
 {
@@ -18,5 +19,9 @@ class Comment extends Model
     
     public function commentable(){
         return $this->morphTo();
+    }
+    
+    public function user(){
+        return $this->hasOne('\App\User', 'id', 'user_id');
     }
 }

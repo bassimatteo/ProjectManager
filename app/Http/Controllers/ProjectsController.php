@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\ProjectUser;
+use Psy\Command\WhereamiCommand;
 
 class ProjectsController extends Controller
 {
@@ -37,7 +41,12 @@ class ProjectsController extends Controller
     public function create($company_id = null)
     {
         //
-        return view('projects.create', ['company_id'=> $company_id]);
+        $companies = null;
+        if(!$company_id){
+            $companies = Company::where('user_id', Auth::user()->id)->get();
+        }
+        
+        return view('projects.create', ['company_id'=> $company_id, 'companies'=>$companies]);
     }
 
     /**
@@ -76,11 +85,12 @@ class ProjectsController extends Controller
      * @param  \App\Project  $Project
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $Project)
+    public function show(Project $project)
     {
         //
-        $Project = Project::find($Project->id);        
-        return view('projects.show', ['project' => $Project]);
+        $project = Project::find($project->id);
+        $comments = $project->comments;
+        return view('projects.show', ['project' => $project, 'comments' => $comments]);
     }
 
     /**
@@ -137,5 +147,29 @@ class ProjectsController extends Controller
         
         // redirect
         return back()->withInput()->with('errors', 'Project could not be deleted');        
+    }
+    
+    /**
+     * Add user to a project
+     */
+    public function addUser(Request $request){
+        
+        $project = Project::find($request->input('project_id'));
+        $user = User::where('email', $request->input('email'))->first();
+        
+        if($project && $user){           
+            
+            $projectUser = ProjectUser::where(['user_id'=> $user->id, 'project_id'=> $project->id])->get();
+            if(!$projectUser){
+            
+                $project->users()->attach($user->id); 
+                return redirect()->route('projects.show', ['project'=>$project->id])->with('success', $request->input('email'). ' was added to the project');
+            }
+            
+            return redirect()->route('projects.show', ['project'=>$project->id])->with('errors', 'User already exists');
+            
+        }
+        return redirect()->route('projects.show', ['project'=>$project->id])->with('errors', 'Error adding user to the project');     
+        
     }
 }

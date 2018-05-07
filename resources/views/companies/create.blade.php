@@ -18,8 +18,7 @@
 								required
 								name="name"
 								spellcheck="false"
-								class="form-control"
-						/>
+								class="form-control"/>
 						</div>	
 						<div class="form-group">
 						<label for="company-description">Description<span class="required">*</span></label>
@@ -28,9 +27,7 @@
 								id="comapany-content"
 								name="description"
 								rows="5" spellcheck="false"
-								class="form-control autosize-target text-left">
-							
-								</textarea>
+								class="form-control autosize-target text-left"></textarea>
 					</div>	
 					<div class="form-group">
 						<input type="submit" class="btn btn-primary" value="Submit" />

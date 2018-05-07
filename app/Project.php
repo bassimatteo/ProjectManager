@@ -16,7 +16,7 @@ class Project extends Model
         
     ];
     
-    public function user(){
+    public function users(){
         return $this->belongsToMany('App\User');
     }
     
@@ -24,7 +24,7 @@ class Project extends Model
         return $this->belongsTo('App\Company');
     }
     
-    public function comment(){
+    public function comments(){
         return $this->morphMany('App\Comment', 'commentable');
     }
 }

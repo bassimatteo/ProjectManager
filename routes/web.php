@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/timesheet', function () {
+    return view('timesheet');
+});
+        
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -26,12 +30,15 @@ Route::middleware(['auth'])->group(function (){
 
     Route::resource('projects', 'ProjectsController');
     Route::get('/projects/create/{company_id?}', 'ProjectsController@create');
-
+    Route::post('/projects/adduser', 'ProjectsController@addUser')->name('projects.adduser');
+    
     Route::resource('roles', 'RolesController');
 
     Route::resource('tasks', 'TasksController');
 
-    Route::resource('users', 'UsersController');  
+    Route::resource('users', 'UsersController');
+    
+    Route::resource('comments', 'CommentsController');
     
 });
 
