@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use App\Project;
+use App\ProjectUser;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\ProjectUser;
-use Psy\Command\WhereamiCommand;
 
 class ProjectsController extends Controller
 {

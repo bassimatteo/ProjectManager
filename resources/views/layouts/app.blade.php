@@ -11,23 +11,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-	<script src="{{ asset('js/app.js') }}" defer></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -53,28 +44,9 @@
                             <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
                         @else
-                        
-                            <li><a class="nav-link" href="{{ route('companies.index') }}"><i class="fas fa-building"></i> Companies</a></li>
-                            <li><a class="nav-link" href="{{ route('projects.index') }}"><i class="fas fa-briefcase"></i> Project</a></li>
-                            <li><a class="nav-link" href="{{ route('tasks.index') }}"><i class="fas fa-tasks"></i> Tasks</a></li>
-                        	
-                        @if(Auth::user()->role_id == 1)	
-  							 <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                   <i class="fas fa-user"></i> Administrator <span class="caret"></span>
-                                </a>
-								<div class="dropdown-menu" aria-labelledby=""menu">
-									<a class="nav-link" href="{{ route('users.index') }}"><i class="fas fa-users"></i> All Users</a>
-									<a class="nav-link" href="{{ route('roles.index') }}"><i class="fas fa-user-shield"></i> All Roles</a>
-									<a class="nav-link" href="{{ route('companies.index') }}"><i class="fas fa-building"></i> All Companies</a>
-									<a class="nav-link" href="{{ route('projects.index') }}"><i class="fas fa-briefcase"></i> All Project</a>
-									<a class="nav-link" href="{{ route('tasks.index') }}"><i class="fas fa-tasks"></i> All Tasks</a>
-								</div>
-                            </li>   
-                          @endif                     	
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                   <i class="fas fa-user"></i> {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -94,12 +66,7 @@
                 </div>
             </div>
         </nav>
-        
-        <div class="container">
-        	@include('partials.errors')
-        	@include('partials.success')
-        </div>
-        
+
         <main class="py-4">
             @yield('content')
         </main>

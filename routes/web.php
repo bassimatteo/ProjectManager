@@ -11,21 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/timesheet', function () {
     return view('timesheet');
 });
-        
+      
+// Authorization routes (login, register, ...)
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::middleware(['auth'])->group(function (){ 
-    
+   
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
+
     Route::resource('companies', 'CompaniesController');
 
     Route::resource('projects', 'ProjectsController');
@@ -41,6 +42,3 @@ Route::middleware(['auth'])->group(function (){
     Route::resource('comments', 'CommentsController');
     
 });
-
-
-
