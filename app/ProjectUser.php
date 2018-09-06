@@ -13,4 +13,5 @@ class ProjectUser extends Model
         'project_id',
         'users_id'
         
-    ];}
+    ];
+}

@@ -17,7 +17,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'first_name', 'middle_name', 'last_name', 
         'city', 
-        'role_id'
+        'role_id',
+        'badge'
     ];
 
     /**
@@ -40,6 +41,10 @@ class User extends Authenticatable
     
     public function commpanies(){
         return $this->hasMany('App\Company');
+    }
+    
+    public function punchs(){
+        return $this->hasMany('App\PunchInOut');
     }
     
     public function tasks(){
