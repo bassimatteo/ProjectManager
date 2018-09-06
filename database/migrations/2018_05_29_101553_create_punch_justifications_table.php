@@ -19,6 +19,7 @@ class CreatePunchJustificationsTable extends Migration
             $table->integer('in_out');
             $table->integer('grouping');
             $table->integer('visible');
+            $table->integer('visibleDashboard');
             $table->timestamps();
             $table->softDeletes();
         });

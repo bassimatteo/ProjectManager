@@ -18,6 +18,7 @@ class PunchJustifications extends Model
         'name',
         'in_out',
         'visible',
+        'visibleDashboard',
         'grouping'
     ]; 
 

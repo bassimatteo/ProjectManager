@@ -83,9 +83,9 @@ class PunchInOutController extends Controller
                 // Verificare lo stato precedente dell'utente
             } else if ($lastPunchInOut != null && strcmp($lastPunchInOut->punchJustification()->first()['in_out'], $justification['in_out']) == 0 ||
                 //stato precendete riposo e stato richiesto uscita   
-                ($lastPunchInOut->punchJustification()->first()['in_out'] == -1  && $justification['in_out'] == 0 ) ||
+                ($lastPunchInOut != null && $lastPunchInOut->punchJustification()->first()['in_out'] == -1  && $justification['in_out'] == 0 ) ||
                 //stato attuale in, business trip... e stato richiesto riposo --> devo prima uscire
-                ($lastPunchInOut->punchJustification()->first()['in_out'] == 1  && $justification['in_out'] == -1 )) {
+                ($lastPunchInOut != null && $lastPunchInOut->punchJustification()->first()['in_out'] == 1  && $justification['in_out'] == -1 )) {
                 return back()->withInput()
                     ->with('title', 'Errore')
                     ->with('body', 'Il tuo stato e: ' . strtoupper($lastPunchInOut->punchJustification->name) . '. Utilizza un giustificativo corretto')
